@@ -1,6 +1,8 @@
 #import "BlastedImageModule.h"
 #import <React/RCTEventEmitter.h>
 #import <SDWebImage/SDWebImage.h>
+#import <SDWebImage/SDImageCodersManager.h>
+#import <SDWebImageAVIFCoder/SDImageAVIFCoder.h>
 #import <React/RCTConvert.h>
 
 @implementation BlastedImageModule
@@ -13,6 +15,9 @@ RCT_EXPORT_MODULE(BlastedImage);
 - (instancetype)init {
     self = [super init];
     if (self) {
+        // Register the AVIF coder
+        [[SDImageCodersManager sharedManager] addCoder:[SDImageAVIFCoder sharedCoder]];
+        
         SDImageCacheConfig *cacheConfig = [SDImageCache sharedImageCache].config;
         cacheConfig.maxDiskSize = 1024 * 1024 * 1024; // 1GB
         cacheConfig.maxDiskAge = NSIntegerMax; // No max time for disk cache
