@@ -22,5 +22,6 @@ Pod::Spec.new do |s|
 
   # Add AVIF support
   s.dependency 'SDWebImageAVIFCoder'
+  s.dependency 'libavif/libdav1d'
 
 end
